@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Пользователи</title>
+</head>
+<body>
+<h1>Список пользователей</h1>
+<div>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Год рождения</th>
+        </tr>
+        <tr th:each="user: ${allUsers}">
+            <td th:text=${user.getId}/>
+            <td th:text=${user.getFirstName}/>
+            <td th:text=${user.getLastName}/>
+            <td th:text=${user.getYear}/>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

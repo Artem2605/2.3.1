@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Создание</title>
+</head>
+<body>
+<h1>Добавить пользователя</h1>
+<form th:method="POST" th:action="@{/users}" th:object="${user}">
+    <label for="name">Введите имя: </label>
+    <input type="text" th:field="*{firstName}" id="name"/>
+    <br/>
+    <label for="surname">Введите фамилию: </label>
+    <input type="text" th:field="*{lastName}" id="surname"/>
+    <br/>
+    <label for="year">Введите год рождения: </label>
+    <input type="number" th:field="*{year}" id="year"/>
+    <br/>
+    <input type="submit" value="Добавить"/>
+</form>
+</body>
+</html>
