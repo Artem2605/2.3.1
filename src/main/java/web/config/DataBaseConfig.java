@@ -48,7 +48,7 @@ public class DataBaseConfig {
     }
 
     @Bean
-    public PlatformTransactionManager getTransactionManager() {
+    public JpaTransactionManager getTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(getEntityManagerFactory().getObject());
         return transactionManager;

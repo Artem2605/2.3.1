@@ -3,12 +3,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Создание</title>
+    <title>Изменение</title>
 </head>
 <body>
 <div align="center">
-    <h1>Добавить пользователя</h1>
-    <form th:method="POST" th:action="@{/addUser}" th:object="${user}">
+    <h1>Изменить пользователя</h1>
+    <form th:method="POST" th:action="@{/updateUser}" th:object="${user}">
+        <br>
+        <br>
+        <label for="id">Введите id </label>
+        <input type="text" th:field="*{id}" id="id"/>
         <br>
         <br>
         <label for="firstName">Введите имя </label>
@@ -26,7 +30,7 @@
         <br>
         <br>
         <br>
-        <input type="submit" value="Добавить"/>
+        <input type="submit" value="Изменить"/>
     </form>
 </div>
 </body>

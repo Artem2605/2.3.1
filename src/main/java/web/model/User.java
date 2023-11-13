@@ -17,12 +17,12 @@ public class User {
     private String lastName;
 
     @Column(name = "year")
-    private Long year;
+    private String year;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, Long year) {
+    public User(String firstName, String lastName, String year) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.year = year;
@@ -52,11 +52,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Long getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Long year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
