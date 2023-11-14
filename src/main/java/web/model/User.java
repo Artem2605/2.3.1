@@ -14,13 +14,12 @@ public class User {
 
     @Column(name = "first_name")
     //@NotEmpty(message = "NOT EMPTY")
-    @Pattern(regexp ="[a-zA-ZА-Яа-я]+", message = "Неверно указано имя")
+    @Pattern(regexp = "[a-zA-ZА-Яа-яЁё]+", message = "Неверно указано имя")
     private String firstName;
 
 
     @Column(name = "last_name")
-    //@NotEmpty(message = "NOT EMPTY")
-    @Pattern(regexp = "[a-zA-ZА-Яа-я]+", message = "Неверно указана фамилия")
+    @Pattern(regexp = "[a-zA-ZА-Яа-яЁё]+", message = "Неверно указана фамилия")
     private String lastName;
 
     @Column(name = "year")

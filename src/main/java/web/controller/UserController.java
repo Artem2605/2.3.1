@@ -4,22 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import web.model.User;
 import web.service.UserService;
-
 import javax.validation.Valid;
 
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService USER_SERVICE;
 
+    @Autowired
+    public UserController(UserService userService) {
+        this.USER_SERVICE = userService;
+    }
 
     @GetMapping("/users")
     public String getUsers(Model model) {
-        model.addAttribute("allUsers", userService.getListOfUsers());
+        model.addAttribute("allUsers", USER_SERVICE.getListOfUsers());
         return "users";
     }
 
@@ -34,18 +39,15 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "new";
         } else {
-            userService.addUser(user);
+            USER_SERVICE.addUser(user);
             return "redirect:/users";
         }
     }
 
-//    <form th:method="GET" th:action="'/update/id='+@{${user.getId()}}" th:object="${user}">
-//                <input type="submit" value="Изменить"/>
-//            </form>
     @GetMapping("/update")
     public String updateUser(@RequestParam(value = "id") Long id,
-            Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+                             Model model) {
+        model.addAttribute("user", USER_SERVICE.getUserById(id));
         return "update";
     }
 
@@ -55,15 +57,15 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "update";
         } else {
-            userService.updateUser(user);
+            USER_SERVICE.updateUser(user);
             return "redirect:/users";
         }
-   }
+    }
 
     @GetMapping("/delete")
     public String deleteUser(@RequestParam(value = "id") Long id,
                              Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("user", USER_SERVICE.getUserById(id));
         return "delete";
     }
 
@@ -73,7 +75,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "delete";
         } else {
-            userService.deleteUserById(user.getId());
+            USER_SERVICE.deleteUserById(user.getId());
             return "redirect:/users";
         }
     }
