@@ -25,7 +25,7 @@
             <td th:text=${user.year}/>
             <td>
             <a th:href="@{/update(id=${user.id})}">Изменить</a>
-            <a href="">Удалить</a>
+            <a th:href="@{/delete(id=${user.id})}">Удалить</a>
             </td>
         </tr>
     </table>

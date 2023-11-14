@@ -1,6 +1,7 @@
 package web.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "users")
@@ -10,19 +11,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(name = "first_name")
+    //@NotEmpty(message = "NOT EMPTY")
+    @Pattern(regexp ="[a-zA-ZА-Яа-я]+", message = "Неверно указано имя")
     private String firstName;
 
+
     @Column(name = "last_name")
+    //@NotEmpty(message = "NOT EMPTY")
+    @Pattern(regexp = "[a-zA-ZА-Яа-я]+", message = "Неверно указана фамилия")
     private String lastName;
 
     @Column(name = "year")
-    private String year;
+    @Min(value = 0, message = "Неверно указан год")
+    @Max(value = 2023, message = "Неверно указан год")
+    @NotNull(message = "Неверно указан год")
+    private Long year;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String year) {
+    public User(String firstName, String lastName, Long year) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.year = year;
@@ -52,11 +62,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getYear() {
+    public Long getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Long year) {
         this.year = year;
     }
 
