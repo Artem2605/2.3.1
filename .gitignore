@@ -36,6 +36,7 @@ out/
 *.iml
 *.ipr
 *.iws
+src/main/java/web/controller/HelloController.java
 src/webapp/WEB-INF/pages/*
 !src/webapp/WEB-INF/pages/delete.html
 !src/webapp/WEB-INF/pages/users.html
