@@ -36,6 +36,12 @@ out/
 *.iml
 *.ipr
 *.iws
+src/webapp/WEB-INF/pages/*
+!src/webapp/WEB-INF/pages/delete.html
+!src/webapp/WEB-INF/pages/users.html
+!src/webapp/WEB-INF/pages/update.html
+!src/webapp/WEB-INF/pages/new.html
+
 
 # OS X
 .DS_Store
