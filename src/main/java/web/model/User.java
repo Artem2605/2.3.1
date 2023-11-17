@@ -2,6 +2,7 @@ package web.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -75,5 +76,23 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", year=" + year +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o == null || getClass() != o.getClass()) {
+            return false;
+        } else {
+            User user = (User) o;
+            return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) &&
+                    Objects.equals(lastName, user.lastName) && Objects.equals(year, user.year);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, year);
     }
 }

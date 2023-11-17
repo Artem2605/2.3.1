@@ -21,16 +21,20 @@ import java.util.Properties;
 @ComponentScan(value = "web")
 public class DataBaseConfig {
 
+    private final Environment ENVIRONMENT;
+
     @Autowired
-    private Environment environment;
+    public DataBaseConfig(Environment environment) {
+        this.ENVIRONMENT = environment;
+    }
 
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getProperty("db.driver"));
-        dataSource.setUrl(environment.getProperty("db.url"));
-        dataSource.setUsername(environment.getProperty("db.username"));
-        dataSource.setPassword(environment.getProperty("db.password"));
+        dataSource.setDriverClassName(ENVIRONMENT.getProperty("db.driver"));
+        dataSource.setUrl(ENVIRONMENT.getProperty("db.url"));
+        dataSource.setUsername(ENVIRONMENT.getProperty("db.username"));
+        dataSource.setPassword(ENVIRONMENT.getProperty("db.password"));
         return dataSource;
     }
 
@@ -39,7 +43,7 @@ public class DataBaseConfig {
         LocalContainerEntityManagerFactoryBean entityManager
                 = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(getDataSource());
-        entityManager.setPackagesToScan(environment.getRequiredProperty("db.entity.package"));
+        entityManager.setPackagesToScan(ENVIRONMENT.getRequiredProperty("db.entity.package"));
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManager.setJpaVendorAdapter(vendorAdapter);
         entityManager.setJpaProperties(getHibernateProperties());
@@ -55,8 +59,8 @@ public class DataBaseConfig {
 
     public Properties getHibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
-        properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.show_sql", ENVIRONMENT.getRequiredProperty("hibernate.show_sql"));
+        properties.put("hibernate.hbm2ddl.auto", ENVIRONMENT.getRequiredProperty("hibernate.hbm2ddl.auto"));
         return properties;
     }
 }

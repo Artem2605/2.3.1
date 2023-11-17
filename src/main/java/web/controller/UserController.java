@@ -23,18 +23,18 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String getUsers(Model model) {
+    public String getTableOfUsers(Model model) {
         model.addAttribute("allUsers", USER_SERVICE.getListOfUsers());
         return "users";
     }
 
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String getFormForCreateUser(@ModelAttribute("user") User user) {
         return "new";
     }
 
     @PostMapping("/addUser")
-    public String create(@ModelAttribute("user") @Valid User user,
+    public String createUser(@ModelAttribute("user") @Valid User user,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "new";
@@ -45,14 +45,14 @@ public class UserController {
     }
 
     @GetMapping("/update")
-    public String updateUser(@RequestParam(value = "id") Long id,
+    public String getUserForUpdate(@RequestParam(value = "id") Long id,
                              Model model) {
         model.addAttribute("user", USER_SERVICE.getUserById(id));
         return "update";
     }
 
     @PostMapping("/updateUser")
-    public String update(@ModelAttribute("user") @Valid User user,
+    public String updateUser(@ModelAttribute("user") @Valid User user,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "update";
@@ -63,14 +63,14 @@ public class UserController {
     }
 
     @GetMapping("/delete")
-    public String deleteUser(@RequestParam(value = "id") Long id,
+    public String getUserForDelete(@RequestParam(value = "id") Long id,
                              Model model) {
         model.addAttribute("user", USER_SERVICE.getUserById(id));
         return "delete";
     }
 
     @PostMapping("/deleteUser")
-    public String delete(@ModelAttribute("user") @Valid User user,
+    public String deleteUser(@ModelAttribute("user") @Valid User user,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "delete";
