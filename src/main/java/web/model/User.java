@@ -1,7 +1,10 @@
 package web.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Objects;
 
 @Entity
@@ -68,14 +71,13 @@ public class User {
     }
 
     @Override
-    public String
-    toString() {
+    public String toString() {
         return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", year=" + year +
-                '}';
+                "id= " + id +
+                ", firstName = " + firstName + "\\" +
+                ", lastName = " + lastName + "\\" +
+                ", year= " + year +
+                "}";
     }
 
     @Override
